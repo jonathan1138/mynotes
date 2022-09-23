@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "430617886831",
+    "project_id": "mynotes-flutter-project-jon",
+    "storage_bucket": "mynotes-flutter-project-jon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430617886831:android:b6af9c8dbb4647f01e4d9a",
+        "android_client_info": {
+          "package_name": "com.u37hourcourse.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430617886831-5k5g6b30f0uef80cnek5ccp124bikkv9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8GE3KjWB8j4HgH1E8Ik-KY8qg81KLEuE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430617886831-5k5g6b30f0uef80cnek5ccp124bikkv9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
