@@ -3,6 +3,7 @@ import 'package:mynotes/services/auth/auth_exceptions.dart';
 import 'package:mynotes/services/auth/auth_service.dart';
 import '../utilities/show_error_dialog.dart';
 import '../constants/routes.dart';
+import '../xelauikit/xela_color.dart';
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -33,6 +34,7 @@ class _RegisterViewState extends State<RegisterView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: XelaColor.Gray4,
         title: const Text('Register'),
       ),
       body: Column(
