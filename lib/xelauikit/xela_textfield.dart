@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'models/xela_textfield_models.dart';
 import 'xela_color.dart';
 import 'xela_text_style.dart';
 
 class XelaTextField extends StatefulWidget {
-
   final String? placeholder;
   String? value;
   final TextEditingController? textEditingController;
@@ -31,7 +29,6 @@ class XelaTextField extends StatefulWidget {
   final Color successHelperTextColor;
   final TextInputType keyboardType;
   Function(String)? onChange;
-
 
   XelaTextField({
     this.placeholder,
@@ -66,7 +63,6 @@ class XelaTextField extends StatefulWidget {
 }
 
 class _XelaTextFieldState extends State<XelaTextField> {
-
   @override
   void initState() {
     super.initState();
@@ -74,7 +70,6 @@ class _XelaTextFieldState extends State<XelaTextField> {
 
   @override
   void dispose() {
-
     // Clean up the focus nodes
     // when the form is disposed
     super.dispose();
@@ -88,46 +83,68 @@ class _XelaTextFieldState extends State<XelaTextField> {
           height: 56,
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
           decoration: BoxDecoration(
-            color: widget.state == XelaTextFieldState.DISABLED ? widget.disabledBackground : widget.background,
+            color: widget.state == XelaTextFieldState.DISABLED
+                ? widget.disabledBackground
+                : widget.background,
             border: Border.all(
-                color: widget.state == XelaTextFieldState.DEFAULT ? widget.borderDefaultColor :
-                widget.state == XelaTextFieldState.FOCUS ? widget.borderFocusColor :
-                widget.state == XelaTextFieldState.ERROR ? widget.borderErrorColor :
-                widget.state == XelaTextFieldState.SUCCESS ? widget.borderSuccessColor : widget.borderDisabledColor,
-                width: 1
-            ),
-            borderRadius: BorderRadius.circular(18),
+                color: widget.state == XelaTextFieldState.DEFAULT
+                    ? widget.borderDefaultColor
+                    : widget.state == XelaTextFieldState.FOCUS
+                        ? widget.borderFocusColor
+                        : widget.state == XelaTextFieldState.ERROR
+                            ? widget.borderErrorColor
+                            : widget.state == XelaTextFieldState.SUCCESS
+                                ? widget.borderSuccessColor
+                                : widget.borderDisabledColor,
+                width: 1),
+            borderRadius: BorderRadius.circular(16),
           ),
-          child: Focus(child: TextFormField(
-            initialValue: widget.value,
-            onChanged: widget.onChange,
-            controller: widget.textEditingController,
-            style: XelaTextStyle.XelaButtonMedium.apply(
-              color: widget.state == XelaTextFieldState.DISABLED ? widget.disabledTextfieldColor : widget.textfieldColor,
+          child: Focus(
+            child: TextFormField(
+              initialValue: widget.value,
+              onChanged: widget.onChange,
+              controller: widget.textEditingController,
+              style: XelaTextStyle.XelaButtonMedium.apply(
+                color: widget.state == XelaTextFieldState.DISABLED
+                    ? widget.disabledTextfieldColor
+                    : widget.textfieldColor,
+              ),
+              enabled: widget.state != XelaTextFieldState.DISABLED,
+              maxLines: 1,
+              cursorColor: widget.textfieldColor,
+              decoration: InputDecoration(
+                labelText: widget.placeholder,
+                labelStyle: XelaTextStyle.XelaSmallBody.apply(
+                    color: widget.placeholderColor),
+                floatingLabelStyle: XelaTextStyle.XelaSmallBody.apply(
+                    color: widget.placeholderColor),
+                border: InputBorder.none,
+                hoverColor: Colors.transparent,
+                filled: true,
+                fillColor: widget.state == XelaTextFieldState.DISABLED
+                    ? widget.disabledBackground
+                    : widget.background,
+                prefixIcon: widget.leftIcon != null
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        child: widget.leftIcon,
+                      )
+                    : null,
+                suffixIcon: widget.rightIcon != null
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        child: widget.rightIcon,
+                      )
+                    : null,
+              ),
+              autocorrect: !widget.disableAutoCorrection,
+              obscureText: widget.secureField,
             ),
-            enabled: widget.state != XelaTextFieldState.DISABLED,
-            maxLines: 1,
-            cursorColor: widget.textfieldColor,
-            decoration:InputDecoration(
-              labelText: widget.placeholder,
-              labelStyle: XelaTextStyle.XelaSmallBody.apply(color: widget.placeholderColor),
-              floatingLabelStyle: XelaTextStyle.XelaSmallBody.apply(color: widget.placeholderColor),
-              border: InputBorder.none,
-              hoverColor: Colors.transparent,
-              filled: true,
-              fillColor: widget.state == XelaTextFieldState.DISABLED ? widget.disabledBackground : widget.background,
-              prefixIcon: widget.leftIcon != null ? Padding(padding: const EdgeInsets.symmetric(vertical: 18), child: widget.leftIcon,) : null,
-              suffixIcon: widget.rightIcon != null ? Padding(padding: const EdgeInsets.symmetric(vertical: 18), child: widget.rightIcon,) : null,
-            ),
-            autocorrect: !widget.disableAutoCorrection,
-            obscureText: widget.secureField,
-          ),
             onFocusChange: (hasFocus) {
               setState(() {
-                if(hasFocus) {
+                if (hasFocus) {
                   widget.state = XelaTextFieldState.FOCUS;
-                }
-                else {
+                } else {
                   widget.state = XelaTextFieldState.DEFAULT;
                 }
               });
@@ -137,13 +154,19 @@ class _XelaTextFieldState extends State<XelaTextField> {
         Container(
             alignment: Alignment.centerLeft,
             padding: EdgeInsets.only(top: widget.helperText != null ? 8 : 0),
-            child: widget.helperText != null ? Text(
-              widget.helperText!,
-              style: XelaTextStyle.XelaCaption.apply(color: widget.state == XelaTextFieldState.DEFAULT ? widget.defaultHelperTextColor :
-              widget.state == XelaTextFieldState.ERROR ? widget.errorHelperTextColor :
-              widget.state == XelaTextFieldState.SUCCESS ? widget.successHelperTextColor : widget.disabledHelperTextColor),
-            ) : Container()
-        )
+            child: widget.helperText != null
+                ? Text(
+                    widget.helperText!,
+                    style: XelaTextStyle.XelaCaption.apply(
+                        color: widget.state == XelaTextFieldState.DEFAULT
+                            ? widget.defaultHelperTextColor
+                            : widget.state == XelaTextFieldState.ERROR
+                                ? widget.errorHelperTextColor
+                                : widget.state == XelaTextFieldState.SUCCESS
+                                    ? widget.successHelperTextColor
+                                    : widget.disabledHelperTextColor),
+                  )
+                : Container())
       ],
     );
   }

@@ -40,7 +40,7 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         backgroundColor: XelaColor.Gray4,
         title: const Text(
-          'Cobra Kind',
+          'CobraKind',
           style: TextStyle(color: XelaColor.Yellow),
         ),
         titleTextStyle: XelaTextStyle.XelaSubheadline,

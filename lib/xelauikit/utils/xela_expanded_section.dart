@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 class XelaExpandedSection extends StatefulWidget {
-
   final Widget child;
   final bool expand;
-  XelaExpandedSection({this.expand = false, required this.child});
+  const XelaExpandedSection(
+      {super.key, this.expand = false, required this.child});
 
   @override
-  _XelaExpandedSectionState createState() => _XelaExpandedSectionState();
+  XelaExpandedSectionState createState() => XelaExpandedSectionState();
 }
 
-class _XelaExpandedSectionState extends State<XelaExpandedSection> with SingleTickerProviderStateMixin {
+class XelaExpandedSectionState extends State<XelaExpandedSection>
+    with SingleTickerProviderStateMixin {
   late AnimationController expandController;
   late Animation<double> animation;
 
@@ -24,9 +25,7 @@ class _XelaExpandedSectionState extends State<XelaExpandedSection> with SingleTi
   ///Setting up the animation
   void prepareAnimations() {
     expandController = AnimationController(
-        vsync: this,
-        duration: Duration(milliseconds: 350)
-    );
+        vsync: this, duration: const Duration(milliseconds: 350));
     animation = CurvedAnimation(
       parent: expandController,
       curve: Curves.fastOutSlowIn,
@@ -34,10 +33,9 @@ class _XelaExpandedSectionState extends State<XelaExpandedSection> with SingleTi
   }
 
   void _runExpandCheck() {
-    if(widget.expand) {
+    if (widget.expand) {
       expandController.forward();
-    }
-    else {
+    } else {
       expandController.reverse();
     }
   }
@@ -57,9 +55,6 @@ class _XelaExpandedSectionState extends State<XelaExpandedSection> with SingleTi
   @override
   Widget build(BuildContext context) {
     return SizeTransition(
-        axisAlignment: 1.0,
-        sizeFactor: animation,
-        child: widget.child
-    );
+        axisAlignment: 1.0, sizeFactor: animation, child: widget.child);
   }
 }

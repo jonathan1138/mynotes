@@ -18,27 +18,27 @@ class XelaCheckbox extends StatefulWidget {
   final bool disabled;
   final bool isChecked;
 
-  XelaCheckbox({
-    this.checkboxIcon,
-    this.label,
-    this.caption,
-    this.value,
-    this.onChange,
-    this.selectedColor = XelaColor.Blue3,
-    this.defaultColor = XelaColor.Gray11,
-    this.valueColor = XelaColor.Red3,
-    this.labelColor = XelaColor.Gray2,
-    this.captionColor = XelaColor.Gray8,
-    this.size = XelaCheckboxSize.MEDIUM,
-    this.disabled = false,
-    this.isChecked = false
-  });
+  XelaCheckbox(
+      {super.key,
+      this.checkboxIcon,
+      this.label,
+      this.caption,
+      this.value,
+      this.onChange,
+      this.selectedColor = XelaColor.Blue3,
+      this.defaultColor = XelaColor.Gray11,
+      this.valueColor = XelaColor.Red3,
+      this.labelColor = XelaColor.Gray2,
+      this.captionColor = XelaColor.Gray8,
+      this.size = XelaCheckboxSize.MEDIUM,
+      this.disabled = false,
+      this.isChecked = false});
 
   @override
-  _XelaCheckboxState createState() => _XelaCheckboxState();
+  XelaCheckboxState createState() => XelaCheckboxState();
 }
 
-class _XelaCheckboxState extends State<XelaCheckbox> {
+class XelaCheckboxState extends State<XelaCheckbox> {
   @override
   void initState() {
     super.initState();
@@ -63,14 +63,14 @@ class _XelaCheckboxState extends State<XelaCheckbox> {
       highlightColor: widget.disabled ? Colors.transparent : null,
       hoverColor: Colors.transparent,
       borderRadius: BorderRadius.circular(12),
-      onTap: (){
-        if(widget.disabled) {
+      onTap: () {
+        if (widget.disabled) {
           return;
         }
         setState(() {
           isChecked = !isChecked;
         });
-        if(widget.onChange != null) {
+        if (widget.onChange != null) {
           widget.onChange!(isChecked);
         }
       },
@@ -79,17 +79,30 @@ class _XelaCheckboxState extends State<XelaCheckbox> {
         child: Row(
           children: [
             Container(
-              width: widget.size == XelaCheckboxSize.LARGE ? 32 : widget.size == XelaCheckboxSize.MEDIUM ? 24 : 20,
-              height: widget.size == XelaCheckboxSize.LARGE ? 32 : widget.size == XelaCheckboxSize.MEDIUM ? 24 : 20,
+              width: widget.size == XelaCheckboxSize.LARGE
+                  ? 32
+                  : widget.size == XelaCheckboxSize.MEDIUM
+                      ? 24
+                      : 20,
+              height: widget.size == XelaCheckboxSize.LARGE
+                  ? 32
+                  : widget.size == XelaCheckboxSize.MEDIUM
+                      ? 24
+                      : 20,
               decoration: BoxDecoration(
                   color: isChecked ? widget.selectedColor : Colors.transparent,
                   shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(widget.size == XelaCheckboxSize.LARGE ? 12 : widget.size == XelaCheckboxSize.MEDIUM ? 9 : 8),
+                  borderRadius: BorderRadius.circular(
+                      widget.size == XelaCheckboxSize.LARGE
+                          ? 12
+                          : widget.size == XelaCheckboxSize.MEDIUM
+                              ? 9
+                              : 8),
                   border: Border.all(
-                    color: isChecked ? widget.selectedColor : widget.defaultColor,
+                    color:
+                        isChecked ? widget.selectedColor : widget.defaultColor,
                     width: 2,
-                  )
-              ),
+                  )),
               child: Container(
                 alignment: Alignment.center,
                 width: widget.size == XelaCheckboxSize.SMALL ? 12 : 15,
@@ -100,18 +113,36 @@ class _XelaCheckboxState extends State<XelaCheckbox> {
                 ),
               ),
             ),
-            Expanded(child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
+            Expanded(
+                child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  widget.label != null ? Text(widget.label!, style: XelaTextStyle.XelaButtonMedium.apply(color: widget.labelColor),) : Container(),
-                  widget.caption != null ? Text(widget.caption!, style: XelaTextStyle.XelaCaption.apply(color: widget.captionColor),) : Container(),
+                  widget.label != null
+                      ? Text(
+                          widget.label!,
+                          style: XelaTextStyle.XelaButtonMedium.apply(
+                              color: widget.labelColor),
+                        )
+                      : Container(),
+                  widget.caption != null
+                      ? Text(
+                          widget.caption!,
+                          style: XelaTextStyle.XelaCaption.apply(
+                              color: widget.captionColor),
+                        )
+                      : Container(),
                 ],
               ),
-            )
-            ),
-            widget.value != null ? Text(widget.value!, style: XelaTextStyle.XelaButtonLarge.apply(color: widget.valueColor),) : Container()
+            )),
+            widget.value != null
+                ? Text(
+                    widget.value!,
+                    style: XelaTextStyle.XelaButtonLarge.apply(
+                        color: widget.valueColor),
+                  )
+                : Container()
           ],
         ),
       ),
