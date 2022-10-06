@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
-
-import 'package:mynotes/constants/routes.dart';
-import 'package:mynotes/services/auth/auth_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mynotes/services/auth/bloc/auth_bloc.dart';
+import 'package:mynotes/services/auth/bloc/auth_event.dart';
 
 import '../xelauikit/xela_color.dart';
 
@@ -28,17 +27,18 @@ class VerifyEmailViewState extends State<VerifyEmailView> {
           const Text(
               "If you haven't received your verification email yet, please press this button"),
           TextButton(
-            onPressed: () async {
-              devtools.log('Pressed email verify');
-              await AuthService.firebase().sendEmailVerification();
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                    const AuthEventSendEmailVerification(),
+                  );
             },
             child: const Text('Send email verification'),
           ),
           TextButton(
-            onPressed: () async {
-              final navigator = Navigator.of(context);
-              await AuthService.firebase().logOut();
-              navigator.pushNamedAndRemoveUntil(loginRoute, (route) => false);
+            onPressed: () {
+              context.read<AuthBloc>().add(
+                    const AuthEventLogOut(),
+                  );
             },
             child: const Text('Restart'),
           )
